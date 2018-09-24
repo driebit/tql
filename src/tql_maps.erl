@@ -51,11 +51,13 @@ merge_with3(Combine, M1, M2, M3) ->
 %%
 %% If the new key already exists, its value will be replaced with the
 %% value that used to be asociated with `OldKey'.
+-ifdef(OTP_RELEASE).
 -spec update_key(OldKey, NewKey, Map) -> UpdatedMap when
     OldKey :: term(),
     NewKey :: term(),
     Map :: #{OldKey := Value :: term()},
     UpdatedMap :: #{NewKey := Value :: term()}.
+-endif.
 update_key(Old, New, M) ->
   V = maps:get(Old, M),
   M2 = maps:remove(Old, M),
